@@ -1,0 +1,3 @@
+name,gender,age,yearDOB,monthDOB,dayDOB,streetAddress,city,province,postalCode,telNo,email,relation
+"John","Male","35","1985","6","20","55 Bellevue","Someplace","Québec","ABC123","1234567890","john@abc.net","Unknown"
+"","","","","","","","","","","","",""
