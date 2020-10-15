@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3cbb125af8163f0d0614a6cce63ab9a895bcc82848db99ff92ebeb691b57f975
+-- hash: c75d0cbb89da8dcf26133978d63a60c11371ff080256e0d937398e4b5aa14b2d
 
 name:           Contacts
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/Contacts#readme>
-homepage:       https://github.com/githubuser/Contacts#readme
-bug-reports:    https://github.com/githubuser/Contacts/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2020 Author name here
+description:    Please see the README on GitHub at <https://github.com/willowell/Contacts#readme>
+homepage:       https://github.com/willowell/Contacts#readme
+bug-reports:    https://github.com/willowell/Contacts/issues
+author:         William Howell
+maintainer:     wlm.howell@gmail.com
+copyright:      2020 William Howell
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -23,7 +23,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/Contacts
+  location: https://github.com/willowell/Contacts
 
 library
   exposed-modules:
@@ -40,6 +40,7 @@ library
     , bytestring
     , cassava
     , data-default
+    , text
     , time
     , utility-ht
     , vector
@@ -58,6 +59,7 @@ executable Contacts-exe
     , bytestring
     , cassava
     , data-default
+    , text
     , time
     , utility-ht
     , vector
@@ -77,6 +79,7 @@ test-suite Contacts-test
     , bytestring
     , cassava
     , data-default
+    , text
     , time
     , utility-ht
     , vector

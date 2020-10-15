@@ -1,0 +1,2 @@
+:seti -XOverloadedStrings
+:seti -XRecordWildCards
