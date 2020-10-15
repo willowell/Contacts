@@ -22,14 +22,14 @@ import Data.Csv (
   )
 import qualified Data.Csv as Cassava
 
-import Data.Text (Text)
+import Data.Text (unwords, splitOn, Text)
 import qualified Data.Text.Encoding as Text
 
 import Data.Vector (Vector)
 import qualified Data.Vector as Vector
 
 data Person = Person {
-    name :: Text
+    names :: [Text]
   , gender :: Text
   , age :: Int
   , dob :: Text
@@ -38,17 +38,17 @@ data Person = Person {
 } deriving (Eq, Show)
 
 testPersonHeader :: ByteString
-testPersonHeader = "name,gender,age,dob,telNo,email"
+testPersonHeader = "names,gender,age,dob,telNo,email"
 
 testPersonRecord :: ByteString
-testPersonRecord = "John,Male,35,1985-6-20,1234567890,john@abc.net"
+testPersonRecord = "John Johnson Jobberson Josephstinson Jorgengengensonian,Male,35,1985-6-20,1234567890,john@abc.net"
 
 testPersonData :: ByteString
 testPersonData = testPersonHeader <> "\n" <> testPersonRecord
 
 testPersonItem :: Person
 testPersonItem = Person {
-    name = "John"
+    names = ["John","Johnson","Jobberson","Josephstinson","Jorgengengensonian"]
   , gender = "Male"
   , age = 35
   , dob = "1985-6-20"
@@ -59,7 +59,7 @@ testPersonItem = Person {
 instance FromNamedRecord Person where
   parseNamedRecord m =
     Person 
-      <$> fmap Text.decodeLatin1 (m .: "name")
+      <$> Data.Text.splitOn " " <$> fmap Text.decodeLatin1 (m .: "names")
       <*> m .: "gender"
       <*> m .: "age"
       <*> m .: "dob"
@@ -70,7 +70,7 @@ instance FromNamedRecord Person where
 instance ToNamedRecord Person where
   toNamedRecord Person{..} =
     Cassava.namedRecord
-      [ "name" .= name
+      [ "names" .= Data.Text.unwords names
       , "age" .= age
       , "dob" .= dob
       , "telNo" .= telNo
@@ -78,10 +78,10 @@ instance ToNamedRecord Person where
       ]
 
 instance DefaultOrdered Person where
-  headerOrder _ = Cassava.header ["name", "age", "dob", "telNo", "email"]
+  headerOrder _ = Cassava.header ["names", "age", "dob", "telNo", "email"]
 
 personHeader :: Header
-personHeader = Vector.fromList ["name", "age", "dob", "telNo", "email"]
+personHeader = Vector.fromList ["names", "age", "dob", "telNo", "email"]
     
 
 type DecodeResult = Either String (Vector Person)
