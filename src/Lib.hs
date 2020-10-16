@@ -5,8 +5,10 @@ import Person
 import Time
 
 dispatch :: [(String, [String] -> IO ())]
-dispatch = [ ("hello", hello)
-           ]
+dispatch = 
+  [ 
+    ("hello", hello)
+  ]
 
 run :: IO ()
 run = do

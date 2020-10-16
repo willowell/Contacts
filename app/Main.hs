@@ -19,6 +19,8 @@ main = do
     Right persons -> do
       putStrLn $ "Number of persons: " ++ show (length persons)
 
+      traverse print persons
+
       putStrLn "Printing persons to data/out.csv..."
 
       Monad.void (encodePersonsToFile "data/out.csv" persons)
